@@ -8,7 +8,7 @@ const PrivateRoute = ({ children }) => {
     const location = useLocation();
 
     if (loading) {
-        return <FaSpinner animation="border" variant="info" />
+        return <FaSpinner></FaSpinner>
     }
 
     if (!user) {
