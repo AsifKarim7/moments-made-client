@@ -5,7 +5,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 const Signup = () => {
 
     const [error, setError] = useState('');
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
 
     const handleSignup = event => {
         event.preventDefault();
@@ -18,14 +18,25 @@ const Signup = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
                 form.reset();
+                handleUpdateUserProfile(name, photoURL);
                 setError('');
+                console.log(user);
             })
             .catch(error => {
                 console.error(error);
                 setError(error.message)
             });
+    }
+
+    const handleUpdateUserProfile = (name, photoURL) => {
+        const profile = {
+            displayName: name,
+            photoURL: photoURL
+        }
+        updateUserProfile(profile)
+            .then(() => { })
+            .catch(error => console.error(error));
     }
 
     return (
@@ -63,7 +74,7 @@ const Signup = () => {
 
                         </div>
                         <div>
-                            <p className=''>{error}</p>
+                            <p className='text-red-600'>{error}</p>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Sign Up" />

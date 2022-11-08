@@ -1,11 +1,28 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
 
     const [error, setError] = useState('');
-    const { login } = useContext(AuthContext);
+    const { providerLogin, login } = useContext(AuthContext);
+
+    const googleProvider = new GoogleAuthProvider();
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setError('');
+            })
+            .catch(error => {
+                console.log(error);
+                setError(error.message)
+            })
+    }
 
     const handleLogin = event => {
         event.preventDefault();
@@ -48,10 +65,14 @@ const Login = () => {
                             <input type="password" name='password' placeholder="Enter Password" className="input input-bordered" />
                         </div>
                         <div>
-                            <p className=''>{error}</p>
+                            <p className='text-red-600'>{error}</p>
                         </div>
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
+                        </div>
+                        <span className='text-center'>Or login with</span>
+                        <div>
+                            <button onClick={handleGoogleSignIn} className="btn btn-primary w-full"><FaGoogle className='mr-2'></FaGoogle>Google</button>
                         </div>
                     </form>
                     <p className='text-center'>New to Moments Made? Please <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link> </p>
