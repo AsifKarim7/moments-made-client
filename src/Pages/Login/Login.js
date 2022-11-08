@@ -1,13 +1,16 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 
 const Login = () => {
-
     const [error, setError] = useState('');
     const { providerLogin, login } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -17,6 +20,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error);
@@ -36,6 +40,7 @@ const Login = () => {
                 console.log(user);
                 form.reset();
                 setError('');
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error(error);
@@ -71,10 +76,10 @@ const Login = () => {
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
                         <span className='text-center'>Or login with</span>
-                        <div>
-                            <button onClick={handleGoogleSignIn} className="btn btn-primary w-full"><FaGoogle className='mr-2'></FaGoogle>Google</button>
-                        </div>
                     </form>
+                    <div className='card-body -mt-14'>
+                        <button onClick={handleGoogleSignIn} className="btn btn-primary"><FaGoogle className='mr-2'></FaGoogle>Google</button>
+                    </div>
                     <p className='text-center'>New to Moments Made? Please <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link> </p>
                 </div>
             </div>
