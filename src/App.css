@@ -5,3 +5,12 @@
 .details-bg {
   min-height: 60vh;
 }
+
+.main-comp {
+  min-height: 100vh;
+}
+
+.footer-comp {
+  position: sticky;
+  top: 100%;
+}
