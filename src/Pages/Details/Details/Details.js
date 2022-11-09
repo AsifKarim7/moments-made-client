@@ -6,12 +6,11 @@ import Reviews from '../Reviews/Reviews';
 const Details = () => {
 
     const serviceDetails = useLoaderData();
-    const { _id } = serviceDetails;
 
     return (
         <div>
             <DetailSection serviceDetails={serviceDetails}></DetailSection>
-            <Reviews _id={_id}></Reviews>
+            <Reviews serviceDetails={serviceDetails}></Reviews>
         </div>
     );
 };

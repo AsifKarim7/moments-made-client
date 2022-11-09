@@ -2,8 +2,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import ReviewCard from './ReviewCard';
 
-const Reviews = ({ _id }) => {
+const Reviews = ({ serviceDetails }) => {
 
+    const { _id, title } = serviceDetails;
     const { user } = useContext(AuthContext);
 
     // load reviews
@@ -28,6 +29,7 @@ const Reviews = ({ _id }) => {
         const photoURL = user?.photoURL || 'unregistered';
         const userReview = {
             service: _id,
+            title,
             review,
             displayName,
             email,
@@ -55,8 +57,8 @@ const Reviews = ({ _id }) => {
 
     return (
         <div>
-
-            <div className='grid grid-cols-1'>
+            <h2 className="text-4xl text-center my-2">Client's Review</h2>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     userReviews.map(userReview => <ReviewCard
                         key={userReview._id}
@@ -67,7 +69,6 @@ const Reviews = ({ _id }) => {
             </div>
 
             <form onSubmit={handleAddReview}>
-                <h2 className="text-4xl">Reviews</h2>
                 <textarea name="review" className="textarea textarea-bordered h-24 w-full" placeholder="Your Review" required></textarea>
 
                 <input className='btn' type="submit" value="Add Review" />
