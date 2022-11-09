@@ -14,7 +14,23 @@ const MyReviews = () => {
             .then(data => setMyReviews(data))
     }, [user?.email])
 
-    console.log(myReviews)
+    const handleDelete = _id => {
+        const proceed = window.confirm('Do you want to delete this review?');
+        if (proceed) {
+            fetch(`http://localhost:5000/reviews/${_id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.deletedCount > 0) {
+                        alert('Deleted Successfully');
+                        const remaining = myReviews.filter(review => review._id !== _id);
+                        setMyReviews(remaining);
+                    }
+                })
+        }
+    }
 
     return (
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
@@ -22,6 +38,7 @@ const MyReviews = () => {
                 myReviews.map(myReview => <MyReviewCard
                     key={myReview._id}
                     myReview={myReview}
+                    handleDelete={handleDelete}
                 >
                 </MyReviewCard>)
             }
