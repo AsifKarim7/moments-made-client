@@ -1,10 +1,10 @@
 import React from 'react';
 import { AiFillDelete } from "react-icons/ai";
-import { FaEdit } from 'react-icons/fa';
+import UpdateModal from './UpdateModal';
+
 
 const MyReviewCard = ({ myReview, handleDelete }) => {
     const { _id, review, displayName, photoURL } = myReview;
-
 
     return (
         <div className="card w-96 bg-base-100 shadow-2xl my-10">
@@ -14,12 +14,20 @@ const MyReviewCard = ({ myReview, handleDelete }) => {
                     <h2 className="card-title">{displayName}</h2>
                 </div>
                 <p>{review}</p>
+
                 <div className='flex justify-end'>
-                    <button className='btn btn-ghost'><FaEdit className='mt-1 text-xl'></FaEdit></button>
+
+                    {/* Update Button */}
+                    <UpdateModal
+                        myReview={myReview}
+                    ></UpdateModal>
+
+                    {/* Delete Button */}
                     <button onClick={() => handleDelete(_id)} className="btn btn-ghost"> <AiFillDelete className='text-xl'></AiFillDelete></button>
+
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

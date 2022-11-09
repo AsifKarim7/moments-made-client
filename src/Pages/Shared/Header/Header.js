@@ -17,7 +17,7 @@ const Header = () => {
         {
             user?.email ?
                 <>
-                    <li><Link to='/'>Add Service</Link></li>
+                    <li><Link to='/addservice'>Add Service</Link></li>
                     <li><Link to='/myreviews'>My Reviews</Link></li>
                 </>
                 :
