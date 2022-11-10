@@ -12,7 +12,7 @@ const Services = () => {
     }, []);
 
     return (
-        <div className="max-w-screen-xl mx-auto pt-10 pb-6">
+        <div className="max-w-screen-xl mx-auto md:pt-10 pb-6">
             <div className='text-center'>
                 <h2 className="text-5xl font-semibold">MY SERVICES</h2>
                 <p className='mt-5 text-xl'>Looking for a wedding photographer? I try to approach weddings <br /> in a documentary and artistic way, trying to tell the story of your day honestly and unobtrusively.</p>

@@ -1,14 +1,19 @@
 import React, { useContext } from 'react';
-import { FaSpinner } from 'react-icons/fa';
 import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import ClipLoader from "react-spinners/ClipLoader";
 
 const PrivateRoute = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
-        return <FaSpinner></FaSpinner>
+        return <div className='flex justify-center my-20'>
+            <ClipLoader color="#6E021F" />
+        </div>
+    }
+    else {
+
     }
 
     if (!user) {

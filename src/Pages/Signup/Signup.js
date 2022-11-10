@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import img1 from '../../assests/images/Signup.png'
 
 const Signup = () => {
     const [error, setError] = useState('');
@@ -44,50 +45,45 @@ const Signup = () => {
     }
 
     return (
-        <div className="hero w-full my-16">
-            <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
-                <div className="text-center lg:text-left">
-                    <img className='w-3/4' src='https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4582.jpg?w=2000' alt="" />
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
-                    <h1 className="text-5xl text-center font-bold">Sign Up</h1>
-                    <form onSubmit={handleSignup} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Name</span>
-                            </label>
-                            <input type="text" name='name' placeholder="Enter Name" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Photo URL</span>
-                            </label>
-                            <input type="text" name='photoURL' placeholder="Enter Photo URL" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="text" name='email' placeholder="Enter Email" className="input input-bordered" required />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input type="password" name='password' placeholder="Enter Password" className="input input-bordered" required />
-
-                        </div>
-                        <div>
-                            <p className='text-red-600'>{error}</p>
-                        </div>
-                        <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Sign Up" />
-                        </div>
-                    </form>
-                    <p className='text-center'>Already have an account? <Link className='text-orange-600 font-bold' to="/login">Login</Link> </p>
-                </div>
+        <div className="flex items-center justify-center flex-col lg:flex-row p-12 max-w-screen-xl mx-auto" >
+            <div>
+                <img className='mx-auto w-full' src={img1} alt=''></img>
             </div>
-        </div>
+            <div className="mx-auto w-full max-w-[550px]">
+                <form onSubmit={handleSignup}>
+
+                    <h2 className='text-5xl text-center font-bold my-10'>Create Account</h2>
+
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">Name</label>
+                        <input type="text" name="name" placeholder="Your Name" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
+                    </div>
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">PhotoURL</label>
+                        <input type="text" name="photoURL" placeholder="Your PhotoURL" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
+                    </div>
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">Email</label>
+                        <input type="email" name="email" placeholder="Your Email" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
+                    </div>
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">Password</label>
+                        <input type="password" name="password" placeholder="Your Password" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
+                    </div>
+                    <div>
+                        <p className='text-primary mb-5'>{error}</p>
+                    </div>
+                    <div>
+                        <input type="submit" className="btn btn-primary rounded-md py-3 px-8 text-base font-semibold text-white outline-none" value="Sign Up" />
+                    </div>
+                </form>
+                <p className='my-6 text-start text-lg'>Already have an account? Please <Link className='text-primary font-bold' to="/login">Login</Link> </p>
+            </div >
+        </div >
     );
 };
 

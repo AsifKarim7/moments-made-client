@@ -88,8 +88,6 @@ const AddService = () => {
                 </form>
             </div >
         </div >
-
-
     );
 };
 

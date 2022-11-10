@@ -3,6 +3,8 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import img1 from '../../assests/images/Login.png';
+
 
 const Login = () => {
     const [error, setError] = useState('');
@@ -49,41 +51,47 @@ const Login = () => {
     }
 
     return (
-        <div className="hero w-full my-16">
-            <div className="hero-content grid gap-20 md:grid-cols-2 flex-col lg:flex-row">
-                <div className="text-center lg:text-left">
-                    <img className='w-3/4' src='https://img.freepik.com/free-vector/secure-login-concept-illustration_114360-4582.jpg?w=2000' alt="" />
-                </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 py-20">
-                    <h1 className="text-5xl text-center font-bold">Login</h1>
-                    <form onSubmit={handleLogin} className="card-body">
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Email</span>
-                            </label>
-                            <input type="email" name='email' placeholder="Enter Email" className="input input-bordered" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label">
-                                <span className="label-text">Password</span>
-                            </label>
-                            <input type="password" name='password' placeholder="Enter Password" className="input input-bordered" />
-                        </div>
-                        <div>
-                            <p className='text-red-600'>{error}</p>
-                        </div>
-                        <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Login" />
-                        </div>
-                        <span className='text-center'>Or login with</span>
-                    </form>
-                    <div className='card-body -mt-14'>
-                        <button onClick={handleGoogleSignIn} className="btn btn-primary"><FaGoogle className='mr-2'></FaGoogle>Google</button>
+
+
+        <div className="flex items-center justify-center flex-col lg:flex-row p-12 max-w-screen-xl mx-auto" >
+            <div>
+                <img className='mx-auto w-full' src={img1} alt=''></img>
+            </div>
+            <div className="mx-auto w-full max-w-[550px]">
+                <form onSubmit={handleLogin}>
+
+                    <h2 className='text-5xl text-center font-bold my-10'>Login Here</h2>
+
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">Email</label>
+                        <input type="email" name="email" placeholder="Your Email" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
                     </div>
-                    <p className='text-center'>New to Moments Made? Please <Link className='text-orange-600 font-bold' to="/signup">Sign Up</Link> </p>
+
+                    <div className="mb-5">
+                        <label className="mb-3 block text-lg">Password</label>
+                        <input type="password" name="password" placeholder="Your Password" className="w-full rounded-md border border-slate-300
+                         bg-white py-3 px-6 font-medium outline-none focus:border-primary focus:shadow-md" required />
+                    </div>
+
+                    <div>
+                        <p className='text-primary mb-5'>{error}</p>
+                    </div>
+                    <div>
+                        <input type="submit" className="btn btn-primary rounded-md py-3 px-8 text-base font-semibold text-white outline-none" value="Login" />
+
+                    </div>
+                </form>
+                <p className='my-2'>Or login with</p>
+                <div>
+                    <button onClick={handleGoogleSignIn} className="btn btn-primary rounded-md py-3 px-8 text-base font-semibold text-white outline-none"><FaGoogle className='mr-2'></FaGoogle>Google</button>
+                    <p className='my-2 text-start'>New to Moments Made? Please <Link className='text-primary font-bold'
+                        to="/signup">Sign Up</Link> </p>
                 </div>
+
             </div>
         </div>
+
     );
 };
 

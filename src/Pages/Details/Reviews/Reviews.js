@@ -3,6 +3,7 @@ import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import ReviewCard from './ReviewCard';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from 'react-router-dom';
 
 const Reviews = ({ serviceDetails }) => {
 
@@ -69,7 +70,7 @@ const Reviews = ({ serviceDetails }) => {
 
     return (
         <div className='mb-10'>
-            <h2 className="text-4xl font-bold text-center mt-2">Client's Review</h2>
+            <h2 className="text-4xl font-bold text-center my-4">Client's Review</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     userReviews.map(userReview => <ReviewCard
@@ -80,12 +81,26 @@ const Reviews = ({ serviceDetails }) => {
                 }
             </div>
 
-            <form onSubmit={handleAddReview}>
-                <ToastContainer></ToastContainer>
-                <textarea name="review" className="textarea textarea-bordered border-primary h-24 w-full focus:shadow-md focus:outline-none" placeholder="Your Review" required></textarea>
+            <div>
+                {
+                    user?.email ?
+                        <>
+                            <form onSubmit={handleAddReview}>
+                                <ToastContainer></ToastContainer>
+                                <textarea name="review" className="textarea textarea-bordered border-primary h-24 w-full focus:shadow-md focus:outline-none" placeholder="Your Review" required></textarea>
 
-                <input className='btn btn-primary text-white my-2 rounded-md' type="submit" value="Add Review" />
-            </form>
+                                <input className='btn btn-primary text-white my-2 rounded-md' type="submit" value="Add Review" />
+                            </form>
+
+                        </>
+                        :
+                        <>
+                            <p className='text-xl text-center'>Please <Link className='text-primary font-bold' to='/login'>login</Link> to add a review.</p>
+                        </>
+
+                }
+            </div>
+
         </div>
     );
 };
