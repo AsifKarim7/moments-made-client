@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const MyReviews = () => {
@@ -24,16 +26,26 @@ const MyReviews = () => {
                 .then(data => {
                     console.log(data);
                     if (data.deletedCount > 0) {
-                        alert('Deleted Successfully');
+                        toast.success('Review Deleted!', {
+                            position: "top-center",
+                            autoClose: 2500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "colored",
+                        });
                         const remaining = myReviews.filter(review => review._id !== _id);
                         setMyReviews(remaining);
+
                     }
                 })
         }
     }
 
     return (
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-screen-xl mx-auto'>
             {
                 myReviews.map(myReview => <MyReviewCard
                     key={myReview._id}
@@ -42,6 +54,7 @@ const MyReviews = () => {
                 >
                 </MyReviewCard>)
             }
+            <ToastContainer></ToastContainer>
         </div>
     );
 };

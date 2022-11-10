@@ -24,7 +24,6 @@ const MyReviewCard = ({ myReview, handleDelete }) => {
 
                     {/* Delete Button */}
                     <button onClick={() => handleDelete(_id)} className="btn btn-ghost"> <AiFillDelete className='text-xl'></AiFillDelete></button>
-
                 </div>
             </div>
         </div >

@@ -7,8 +7,8 @@ import Slider from '../Slider/Slider';
 const Home = () => {
     return (
         <div>
+            <HeroSection className="max-w-screen-xl mx-auto"></HeroSection>
             <Slider></Slider>
-            <HeroSection></HeroSection>
             <Services></Services>
             <About></About>
         </div>

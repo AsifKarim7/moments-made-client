@@ -8,7 +8,7 @@ const Details = () => {
     const serviceDetails = useLoaderData();
 
     return (
-        <div>
+        <div className='max-w-screen-xl mx-auto'>
             <DetailSection serviceDetails={serviceDetails}></DetailSection>
             <Reviews serviceDetails={serviceDetails}></Reviews>
         </div>

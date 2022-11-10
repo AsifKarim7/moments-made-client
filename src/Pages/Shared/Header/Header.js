@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import logo from '../../../logo.png'
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
@@ -12,13 +13,13 @@ const Header = () => {
     }
 
     const menuItems = <>
-        <li><Link to='/'>Home</Link></li>
-        <li><Link to='/blog'>Blog</Link></li>
+        <li><Link className='btn btn-ghost motion-safe:hover:scale-110 active:text-white' to='/'>Home</Link></li>
+        <li><Link className='btn btn-ghost motion-safe:hover:scale-110 active:text-white' to='/blog'>Blog</Link></li>
         {
             user?.email ?
                 <>
-                    <li><Link to='/addservice'>Add Service</Link></li>
-                    <li><Link to='/myreviews'>My Reviews</Link></li>
+                    <li><Link className='btn btn-ghost motion-safe:hover:scale-110 active:text-white' to='/addservice'>Add Service</Link></li>
+                    <li><Link className='btn btn-ghost motion-safe:hover:scale-110 active:text-white' to='/myreviews'>My Reviews</Link></li>
                 </>
                 :
                 <></>
@@ -28,15 +29,18 @@ const Header = () => {
     const menuLoginLogout = <>
         {
             user?.email ?
-                <button onClick={handleLogOut} className="btn">Logout</button>
+                <button onClick={handleLogOut} className="btn btn-outline hover:bg-gray-900 hover:border-0  text-white motion-safe:hover:scale-110">Logout</button>
                 :
-                <Link to='/login'><button className="btn">Login</button></Link>
+                <Link to='/login'><button className="btn btn-outline hover:bg-gray-900 hover:border-0  text-white motion-safe:hover:scale-110">Login</button></Link>
         }
     </>
 
     return (
-        <div className="navbar bg-base-100">
-            <div className="navbar-start">
+        <div className="navbar text-white py-1
+        bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-700 via-gray-900 to-black
+        ">
+
+            <div className="navbar-start pl-0 md:pl-80">
 
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -48,7 +52,7 @@ const Header = () => {
                 </div>
 
                 <Link to='/'>
-                    <p className="btn btn-ghost normal-case text-xl">Moments Made</p>
+                    <img className='w-24' src={logo} alt="" />
                 </Link>
 
             </div>
@@ -59,10 +63,11 @@ const Header = () => {
                 </ul>
             </div>
 
-            <div className="navbar-end">
+            <div className="navbar-end pr-0 md:pr-80">
                 {menuLoginLogout}
             </div>
         </div>
+
     );
 };
 

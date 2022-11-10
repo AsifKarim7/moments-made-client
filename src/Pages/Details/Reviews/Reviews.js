@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import ReviewCard from './ReviewCard';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Reviews = ({ serviceDetails }) => {
 
@@ -47,8 +49,18 @@ const Reviews = ({ serviceDetails }) => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    alert('Review Added Successfully')
+                    toast.success('Review Added!', {
+                        position: "top-center",
+                        autoClose: 2500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "colored",
+                    });
                     form.reset();
+                    setReviews([...userReviews, userReview]);
                 }
             })
             .catch(error => console.error(error));
@@ -56,8 +68,8 @@ const Reviews = ({ serviceDetails }) => {
 
 
     return (
-        <div>
-            <h2 className="text-4xl text-center my-2">Client's Review</h2>
+        <div className='mb-10'>
+            <h2 className="text-4xl font-bold text-center mt-2">Client's Review</h2>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     userReviews.map(userReview => <ReviewCard
@@ -69,9 +81,10 @@ const Reviews = ({ serviceDetails }) => {
             </div>
 
             <form onSubmit={handleAddReview}>
-                <textarea name="review" className="textarea textarea-bordered h-24 w-full" placeholder="Your Review" required></textarea>
+                <ToastContainer></ToastContainer>
+                <textarea name="review" className="textarea textarea-bordered border-primary h-24 w-full focus:shadow-md focus:outline-none" placeholder="Your Review" required></textarea>
 
-                <input className='btn' type="submit" value="Add Review" />
+                <input className='btn btn-primary text-white my-2 rounded-md' type="submit" value="Add Review" />
             </form>
         </div>
     );
