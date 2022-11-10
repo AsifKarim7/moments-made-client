@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import img1 from '../../assests/images/Login.png';
+import useTitle from '../../hooks/useTitle';
 
 
 const Login = () => {
@@ -11,6 +12,8 @@ const Login = () => {
     const { providerLogin, login } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+
+    useTitle('Login')
 
     const from = location.state?.from?.pathname || "/";
 

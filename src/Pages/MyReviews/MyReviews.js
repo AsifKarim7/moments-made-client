@@ -3,6 +3,7 @@ import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import MyReviewCard from './MyReviewCard';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/useTitle';
 
 
 const MyReviews = () => {
@@ -10,8 +11,10 @@ const MyReviews = () => {
     const { user } = useContext(AuthContext);
     const [myReviews, setMyReviews] = useState([]);
 
+    useTitle('My Reviews')
+
     useEffect(() => {
-        fetch(`http://localhost:5000/review?email=${user?.email}`)
+        fetch(`https://moments-made-server.vercel.app/review?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setMyReviews(data))
     }, [user?.email])
@@ -19,7 +22,7 @@ const MyReviews = () => {
     const handleDelete = _id => {
         const proceed = window.confirm('Do you want to delete this review?');
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${_id}`, {
+            fetch(`https://moments-made-server.vercel.app/reviews/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

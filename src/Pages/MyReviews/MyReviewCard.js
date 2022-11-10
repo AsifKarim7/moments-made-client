@@ -4,12 +4,16 @@ import UpdateModal from './UpdateModal';
 
 
 const MyReviewCard = ({ myReview, handleDelete }) => {
-    const { _id, review, displayName, photoURL } = myReview;
+    const { _id, review, displayName, photoURL, title } = myReview;
 
     return (
         <div className="card w-96 bg-base-100 shadow-2xl my-10">
+
             <div className="card-body">
+                <h2 className="text-center text-3xl font-bold my-2">{title}</h2>
+
                 <div className='flex items-center'>
+
                     <img className='rounded-full h-8 w-8 mr-4' src={photoURL} alt="" />
                     <h2 className="card-title">{displayName}</h2>
                 </div>

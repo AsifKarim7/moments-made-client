@@ -1,8 +1,11 @@
 import React from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import useTitle from '../../hooks/useTitle';
 
 const AddService = () => {
+
+    useTitle('Add Service')
 
     const handleAddService = event => {
         event.preventDefault();
@@ -19,7 +22,7 @@ const AddService = () => {
         }
 
 
-        fetch('http://localhost:5000/services', {
+        fetch('https://moments-made-server.vercel.app/services', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

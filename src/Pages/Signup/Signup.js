@@ -2,12 +2,14 @@ import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import img1 from '../../assests/images/Signup.png'
+import useTitle from '../../hooks/useTitle';
 
 const Signup = () => {
     const [error, setError] = useState('');
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
+    useTitle('Sign Up')
 
     const from = location.state?.from?.pathname || "/";
 

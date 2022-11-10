@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import ServiceCard from '../Home/Services/ServiceCard';
 import ClipLoader from "react-spinners/ClipLoader";
+import useTitle from '../../hooks/useTitle';
 
 const AllServices = () => {
 
     const [allServices, setAllServices] = useState([]);
+    useTitle('Services')
+
     useEffect(() => {
-        fetch('http://localhost:5000/allservices')
+        fetch('https://moments-made-server.vercel.app/allservices')
             .then(res => res.json())
             .then(data => setAllServices(data))
     }, []);

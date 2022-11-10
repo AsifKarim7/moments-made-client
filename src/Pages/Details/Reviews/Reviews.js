@@ -15,7 +15,7 @@ const Reviews = ({ serviceDetails }) => {
     const [userReviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?service=${_id}`)
+        fetch(`https://moments-made-server.vercel.app/reviews?service=${_id}`)
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [_id])
@@ -39,7 +39,7 @@ const Reviews = ({ serviceDetails }) => {
             photoURL,
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://moments-made-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -61,7 +61,7 @@ const Reviews = ({ serviceDetails }) => {
                         theme: "colored",
                     });
                     form.reset();
-                    setReviews([...userReviews, userReview]);
+                    setReviews([userReview, ...userReviews]);
                 }
             })
             .catch(error => console.error(error));

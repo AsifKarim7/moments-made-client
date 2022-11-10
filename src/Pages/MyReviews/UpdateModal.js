@@ -2,7 +2,8 @@ import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 
 const UpdateModal = ({ myReview }) => {
-    const { _id, review, displayName, photoURL } = myReview;
+    console.log(myReview)
+    const { _id, review, displayName, photoURL, title } = myReview;
 
     const handleUpdate = _id => {
         _id.preventDefault();
@@ -18,7 +19,7 @@ const UpdateModal = ({ myReview }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-
+                    <h2 className="text-center text-3xl font-bold my-2">{title}</h2>
                     <div className='flex items-center'>
                         <img className='rounded-full h-8 w-8 mr-4' src={photoURL} alt="" />
                         <h2 className="card-title">{displayName}</h2>
